@@ -10,7 +10,7 @@ import {ConfigService} from '../config.service'
 export class AdminComponent implements OnInit {
   linkedInToken = '';
 
-  postResponse = {
+  public postResponse = {
     accessToken:'',
     refreshtime:''
   };
@@ -22,11 +22,12 @@ export class AdminComponent implements OnInit {
   this.linkedInToken = this.service.codeInResponse(this.linkedInToken);
   }
   onPost(){
-    this.service.exchangeAuthCode().subscribe(
-        res => {
+    this.service.exchangeAuthCode().subscribe((res:any ) => {
+      this.postResponse=res,
         this.service.setToken(res['access_token']);
+        console.log(this.postResponse.accessToken);
         
-        
+               
     })
  
   }
