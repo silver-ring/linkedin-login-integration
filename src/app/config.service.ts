@@ -20,6 +20,6 @@ export class ConfigService {
   constructor(private http: HttpClient) {}
 
   getData() {
-    return this.http.get(this.url);
+    return this.http.get<Config>(this.url);
   }
 }
