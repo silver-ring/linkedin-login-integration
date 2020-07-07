@@ -10,9 +10,25 @@ import {ConfigService} from '../config.service'
 export class AdminComponent implements OnInit {
   linkedInToken = '';
 
+  postResponse = {
+    accessToken:'',
+    refreshtime:''
+  };
+
   constructor(private route: ActivatedRoute , private service:ConfigService ) {}
+  
 
   ngOnInit() {
   this.linkedInToken = this.service.codeInResponse(this.linkedInToken);
   }
+  onPost(){
+    this.service.exchangeAuthCode().subscribe(
+        res => {
+        this.service.setToken(res['access_token']);
+        
+        
+    })
+ 
+  }
+
 }
