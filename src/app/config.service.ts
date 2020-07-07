@@ -14,12 +14,12 @@ export interface Config {
   providedIn: 'root',
 })
 export class ConfigService {
-  private url: any =
-    ' https://www.linkedin.com/oauth/v2/authorization?response_type=code&state=AnRandomString007&scope=r_liteprofile&client_id=78xnztjf0u5umr&redirect_uri=https://linkedinsociallogin.herokuapp.com/login';
+  /*private url: any =
+    ' https://www.linkedin.com/oauth/v2/authorization?response_type=code&state=AnRandomString007&scope=r_liteprofile&client_id=78xnztjf0u5umr&redirect_uri=https://linkedinsociallogin.herokuapp.com/login';*/
 
   constructor(private http: HttpClient) {}
 
-  getData() {
+  /*getData() {
     return this.http.get<Config>(this.url);
-  }
+  }*/
 }
