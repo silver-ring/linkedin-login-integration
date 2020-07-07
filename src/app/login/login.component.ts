@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigService, Config } from '../config.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -8,23 +9,18 @@ import { ConfigService, Config } from '../config.service';
   providers: [ConfigService],
 })
 export class LoginComponent implements OnInit {
-  config: Config;
-  user: any;
-  constructor(private service: ConfigService) {}
+  linkedInCredentials = {
+    clientId: '78xnztjf0u5umr',
+    redirectUrl: 'https://linkedinsociallogin.herokuapp.com/admin',
+  };
+
+  constructor(private http: HttpClient) {}
 
   ngOnInit(): void {}
-  getUsers(){};
-  /*getUsers() {
-    this.service.getData().subscribe(
-      (data: Config) =>
-        (this.config = {
-          linkedinUrl: data['linkedinUrl'],
-          code:data['code'],
-          state:data['state']
 
-          
-        })
-    );
-    console.log(config);
-  }*/
+  linkedinLogin() {
+    window.location.href = `https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=${this.linkedInCredentials.clientId}&redirect_uri=${this.linkedInCredentials.redirectUrl}&state=987654321`;
+  }
+
+  
 }
