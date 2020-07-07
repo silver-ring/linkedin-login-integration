@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   linkedinLogin() {
-    window.location.href = `https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=${this.linkedInCredentials.clientId}&redirect_uri=${this.linkedInCredentials.redirectUrl}&state=987654321`;
+    window.location.href = ' https://www.linkedin.com/oauth/v2/authorization?response_type=code&state=AnRandomString007&scope=r_liteprofile&client_id=78xnztjf0u5umr&redirect_uri=https://linkedinsociallogin.herokuapp.com/admin';
   }
 
   
