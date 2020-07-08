@@ -3,7 +3,7 @@ const path = require("path");
 const app = express();
 const cors = require("cors");
 app.use(cors());
-/*app.use(function(req,res,next){
+/*app.use(function(req,res,next){ /// this was not working error status 500 Internal server error 
   res.header("Access - Control - Allow - Origin", "*");
  next();
 })*/
