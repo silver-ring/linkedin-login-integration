@@ -11,20 +11,21 @@ import { analyzeAndValidateNgModules } from '@angular/compiler';
   providedIn: 'root',
 })
 export class ConfigService {
-  
-  private linkedInCredentials = {
-    clientId: '78xnztjf0u5umr',
-    clientsecret: 'edznXLWlJ8C4ppIh',
-    redirectUrl: 'https://linkedinsociallogin.herokuapp.com/admin',
-  };
+  linkedInToken = '';
 
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded',
     }),
   };
+
+  private linkedInCredentials = {
+    clientId: '78xnztjf0u5umr',
+    clientsecret: 'edznXLWlJ8C4ppIh',
+    redirectUrl: 'https://linkedinsociallogin.herokuapp.com/admin',
+  };
+
   constructor(private http: HttpClient, private route: ActivatedRoute) {}
-  linkedInToken = '';
 
   codeInResponse(linkedintoken) {
     this.linkedInToken = this.route.snapshot.queryParams['code'];
@@ -38,7 +39,5 @@ export class ConfigService {
     );
   }
 
-  setToken(token: any) {
-    localStorage.setItem('access_token', token);
-  }
+
 }

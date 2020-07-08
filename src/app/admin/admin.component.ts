@@ -21,17 +21,18 @@ export class AdminComponent implements OnInit {
 
   ngOnInit() {
   this.linkedInToken = this.service.codeInResponse(this.linkedInToken);
+  
+  this.service.exchangeAuthCode().subscribe((res: any) => {
+  console.log(res.json.access_token);
+  this.json = JSON.parse(res.json);
+  });
   }
   onPost(){
-    this.service.exchangeAuthCode().subscribe((res:any ) => {
+    
       /*this.postResponse=res,
         this.service.setToken(res['access_token']);
         console.log(this.postResponse.accessToken);*/
-      console.log(res.json.access_token);
-      this.json = JSON.stringify(res.json);
-        
-               
-    })
+    
  
   }
 
