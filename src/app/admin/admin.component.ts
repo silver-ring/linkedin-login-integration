@@ -29,7 +29,7 @@ export class AdminComponent implements OnInit {
     headers: new HttpHeaders({
       //'Content-Type': 'application/json', //removing the header option as without it also this works tested via postman
       'Access-Control-Allow-Origin':
-        'https://linkedinsociallogin.herokuapp.com/admin',
+        '*',
     }),
   };
 
@@ -49,9 +49,9 @@ console.log(res.json.access_token);
     console.log(this.linkedInToken);
 
     this.http
-      .post(
+      .get(
         `https://www.linkedin.com/oauth/v2/accessToken?&grant_type=authorization_code&code=${this.linkedInToken}&redirect_uri=${this.linkedInCredentials.redirectUrl}&client_id=${this.linkedInCredentials.clientId}&client_secret=${this.linkedInCredentials.clientsecret}`,
-        null,
+       
         this.httpOptions
       )
       .subscribe(
