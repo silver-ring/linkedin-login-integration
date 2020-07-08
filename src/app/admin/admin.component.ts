@@ -14,7 +14,7 @@ export class AdminComponent implements OnInit {
     accessToken:'',
     refreshtime:''
   };
-  json : JSON;
+  json ;
 
   constructor(private route: ActivatedRoute , private service:ConfigService ) {}
   
@@ -27,8 +27,8 @@ export class AdminComponent implements OnInit {
       /*this.postResponse=res,
         this.service.setToken(res['access_token']);
         console.log(this.postResponse.accessToken);*/
-      console.log(res);
-      this.json = res.json;
+      console.log(res.json.access_token);
+      this.json = JSON.stringify(res.json);
         
                
     })
