@@ -19,17 +19,21 @@ export class AdminComponent implements OnInit {
 
   json;
 
-  constructor(private route: ActivatedRoute, private service: ConfigService ,private http: HttpClient) {}
+  constructor(
+    private route: ActivatedRoute,
+    private service: ConfigService,
+    private http: HttpClient
+  ) {}
 
   httpOptions = {
     headers: new HttpHeaders({
-            //'Content-Type': 'application/json', //removing the header option as without it also this works tested via postman
-            'Access-Control-Allow-Origin' : '*',
-    
-          }),
+      //'Content-Type': 'application/json', //removing the header option as without it also this works tested via postman
+      'Access-Control-Allow-Origin':
+        'https://linkedinsociallogin.herokuapp.com',
+    }),
   };
 
-  private linkedInCredentials = {
+  linkedInCredentials = {
     clientId: '78xnztjf0u5umr',
     clientsecret: 'edznXLWlJ8C4ppIh',
     redirectUrl: 'https://linkedinsociallogin.herokuapp.com/admin',
@@ -44,14 +48,19 @@ console.log(res.json.access_token);
 });*/
     console.log(this.linkedInToken);
 
-    this.http.post(
-      `https://www.linkedin.com/oauth/v2/accessToken?&grant_type=authorization_code&code=${this.linkedInToken}&redirect_uri=${this.linkedInCredentials.redirectUrl}&client_id=${this.linkedInCredentials.clientId}&client_secret=${this.linkedInCredentials.clientsecret}`,null,
-      this.httpOptions
-    ).subscribe((res:any)=>{
-      console.log(res.json.access_token);
-      
-    })
-
+    this.http
+      .post(
+        `https://www.linkedin.com/oauth/v2/accessToken?&grant_type=authorization_code&code=${this.linkedInToken}&redirect_uri=${this.linkedInCredentials.redirectUrl}&client_id=${this.linkedInCredentials.clientId}&client_secret=${this.linkedInCredentials.clientsecret}`,
+        null,
+        this.httpOptions
+      )
+      .subscribe(
+        (res: any) => {
+          console.log(res.json.access_token);
+        },
+        (err) => {
+          console.log(err.message);
+        }
+      );
   }
-  
 }
