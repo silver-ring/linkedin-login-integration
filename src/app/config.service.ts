@@ -11,6 +11,7 @@ import { analyzeAndValidateNgModules } from '@angular/compiler';
   providedIn: 'root',
 })
 export class ConfigService {
+  
   private linkedInCredentials = {
     clientId: '78xnztjf0u5umr',
     clientsecret: 'edznXLWlJ8C4ppIh',
