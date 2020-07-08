@@ -12,10 +12,11 @@ import { analyzeAndValidateNgModules } from '@angular/compiler';
 })
 export class ConfigService {
   linkedInToken = '';
+  accessToken = '';
 
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/x-www-form-urlencoded',
+      //'Content-Type': 'application/json', //removing the header option as without it also this works tested via postman
     }),
   };
 
@@ -32,12 +33,10 @@ export class ConfigService {
     return this.linkedInToken;
   }
 
-  exchangeAuthCode() {
+  exchangeAuthCode(accessToken) {
     return this.http.post(
       `https://www.linkedin.com/oauth/v2/accessToken&grant_type=authorization_code&code=${this.linkedInToken}&redirect_uri=${this.linkedInCredentials.redirectUrl}&client_id=${this.linkedInCredentials.clientId}&client_secret=${this.linkedInCredentials.clientsecret}`,
       this.httpOptions
     );
   }
-
-
 }
