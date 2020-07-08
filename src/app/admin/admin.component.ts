@@ -24,7 +24,7 @@ export class AdminComponent implements OnInit {
   httpOptions = {
     headers: new HttpHeaders({
             //'Content-Type': 'application/json', //removing the header option as without it also this works tested via postman
-            'Access-Control-Allow-Origin' : '*',
+            'Access-Control-Allow-Origin' : 'https://linkedinsociallogin.herokuapp.com',
     
           }),
   };
