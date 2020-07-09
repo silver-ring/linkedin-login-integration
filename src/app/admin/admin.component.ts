@@ -29,11 +29,11 @@ export class AdminComponent implements OnInit {
   httpOptions = {
     headers: new HttpHeaders({
       //'Content-Type': 'application/json', //removing the header option as without it also this works tested via postman
-      //'Access-Control-Request-Headers': 'Origin, Content-Type, X-Auth-Token, content-type',
-      'Access-Control-Request-Headers':'Origin, Content-Type, X-Auth-Token, content-type',
-      'Access-Control-Allow-Methods': 'GET,POST,PATCH,DELETE,PUT,OPTIONS',
-      'Origin': '*',
-      'Accept': 'text/html, application/xhtml+xml, application/xml;q=0.9, */*;q=0.8',
+      //'Access-Control-Request-Headers': 'Origin, Content-Type, X-Auth-Token, content-type', //main.7c2d8c1bc547b29396b0.js:1 Refused to set unsafe header "Access-Control-Request-Headers"
+      'Access-Control-Request-Headers':'*', 
+      'Access-Control-Allow-Methods': 'GET,POST,PATCH,DELETE,PUT,OPTIONS', 
+      //'Origin': '*',// Refused to set unsafe header "Origin"
+      //'Accept':'text/html, application/xhtml+xml, application/xml;q=0.9, */*;q=0.8',
     }),
   };
 
