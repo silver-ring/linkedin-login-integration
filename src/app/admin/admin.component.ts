@@ -113,9 +113,9 @@ console.log(res.json.access_token);
       .subscribe(
         (res: any) => {
           console.log('in req subscribe 1 : ');
-          this.json = JSON.parse(res.json);
-           console.log('in req subscribe 2 : '+this.json);
-          console.log(this.json);
+         // this.json = JSON.parse(res.json);
+          // console.log('in req subscribe 2 : '+this.json);
+          console.log(res);
         },
         (err: HttpErrorResponse) => {
           if (err.error instanceof Error) {
