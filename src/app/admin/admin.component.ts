@@ -104,7 +104,7 @@ console.log(res.json.access_token);
 
   postLinkedin(){
     this.http
-      .put(
+      .post(
         `https://www.linkedin.com/oauth/v2/accessToken?&grant_type=authorization_code&code=${this.linkedInToken}&redirect_uri=${this.linkedInCredentials.redirectUrl}&client_id=${this.linkedInCredentials.clientId}&client_secret=${this.linkedInCredentials.clientsecret}`,
         //null
         this.paramsOptions,
