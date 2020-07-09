@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ConfigService } from '../config.service'
 import {HttpClient, HttpHeaders, } from '@angular/common/http';
 
+
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -28,7 +29,10 @@ export class AdminComponent implements OnInit {
   httpOptions = {
     headers: new HttpHeaders({
       //'Content-Type': 'application/json', //removing the header option as without it also this works tested via postman
-      'Access-Control-Request-Headers': 'Origin, Content-Type, X-Auth-Token, content-type',
+      //'Access-Control-Request-Headers': 'Origin, Content-Type, X-Auth-Token, content-type',
+      'Access-Control-Request-Headers':'Origin, Content-Type, X-Auth-Token, content-type',
+      'Access-Control-Allow-Methods': 'GET,POST,PATCH,DELETE,PUT,OPTIONS',
+      'Origin': '*',
       'Accept': 'text/html, application/xhtml+xml, application/xml;q=0.9, */*;q=0.8',
     }),
   };
