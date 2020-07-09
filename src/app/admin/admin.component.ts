@@ -31,15 +31,14 @@ export class AdminComponent implements OnInit {
       //'Access-Control-Request-Headers': 'Origin, Content-Type, X-Auth-Token, content-type', //main.7c2d8c1bc547b29396b0.js:1 Refused to set unsafe header "Access-Control-Request-Headers"
       'Access-Control-Request-Headers': '*',
       'Access-Control-Allow-Methods': 'GET,POST',
-      'Origin': '*', // Refused to set unsafe header "Origin"
+      Origin: '*', // Refused to set unsafe header "Origin"
       //'Accept':'text/html, application/xhtml+xml, application/xml;q=0.9, */  /**;q=0.8',
     }),
   };
 
-  paramsOptions ={
-    header : new XMLHttpRequest()
-    
-  }
+  paramsOptions = {
+    header: new XMLHttpRequest(),
+  };
 
   constructor(
     private route: ActivatedRoute,
@@ -61,7 +60,9 @@ console.log(res.json.access_token);
 // this.json = JSON.parse(res.json);
 });*/
     console.log(this.linkedInToken);
-    const req = this.http
+
+    //post request
+    /*  const req = this.http
       .put(
         `https://www.linkedin.com/oauth/v2/accessToken?&grant_type=authorization_code&code=${this.linkedInToken}&redirect_uri=${this.linkedInCredentials.redirectUrl}&client_id=${this.linkedInCredentials.clientId}&client_secret=${this.linkedInCredentials.clientsecret}`,
         //null
@@ -81,7 +82,9 @@ console.log(res.json.access_token);
             console.log('Server-side error occured.');
           }
         }
-      );
+      );*/
+    //post request ends here
+
     /*this.http.get(`https://www.linkedin.com/oauth/v2/accessToken?&grant_type=authorization_code&code=${this.linkedInToken}&redirect_uri=${this.linkedInCredentials.redirectUrl}&client_id=${this.linkedInCredentials.clientId}&client_secret=${this.linkedInCredentials.clientsecret}`)
     .subscribe(
       data =>{
@@ -97,5 +100,30 @@ console.log(res.json.access_token);
       }
     }
     )*/
+  }
+
+  postLinkedin(){
+    this.http
+      .put(
+        `https://www.linkedin.com/oauth/v2/accessToken?&grant_type=authorization_code&code=${this.linkedInToken}&redirect_uri=${this.linkedInCredentials.redirectUrl}&client_id=${this.linkedInCredentials.clientId}&client_secret=${this.linkedInCredentials.clientsecret}`,
+        //null
+        this.paramsOptions,
+        this.httpOptions
+      )
+      .subscribe(
+        (res: any) => {
+          console.log('in req subscribe 1 : ');
+          this.json = JSON.parse(res);
+           console.log('in req subscribe 2 : '+this.json);
+          console.log(this.json);
+        },
+        (err: HttpErrorResponse) => {
+          if (err.error instanceof Error) {
+            console.log('Client-side error occured.');
+          } else {
+            console.log('Server-side error occured.');
+          }
+        }
+      );
   }
 }
