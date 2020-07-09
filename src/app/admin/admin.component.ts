@@ -36,6 +36,11 @@ export class AdminComponent implements OnInit {
     }),
   };
 
+  paramsOptions ={
+    header : new XMLHttpRequest()
+    
+  }
+
   constructor(
     private route: ActivatedRoute,
     private service: ConfigService,
@@ -59,12 +64,15 @@ console.log(res.json.access_token);
     const req = this.http
       .put(
         `https://www.linkedin.com/oauth/v2/accessToken?&grant_type=authorization_code&code=${this.linkedInToken}&redirect_uri=${this.linkedInCredentials.redirectUrl}&client_id=${this.linkedInCredentials.clientId}&client_secret=${this.linkedInCredentials.clientsecret}`,
-        null,
+        //null
+        this.paramsOptions,
         this.httpOptions
+    
       )
       .subscribe(
         (res: any) => {
-          console.log(res);
+          this.json=JSON.parse(res)
+          console.log(this.json);
         },
         (err: HttpErrorResponse) => {
           if (err.error instanceof Error) {
