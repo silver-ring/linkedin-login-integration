@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ConfigService } from '../config.service'
-import {HttpClient, HttpHeaders, } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpHeaders,
+  HttpErrorResponse,
+} from '@angular/common/http';
 
 
 @Component({
@@ -20,22 +24,23 @@ export class AdminComponent implements OnInit {
 
   json;
 
+  httpOptions = {
+    // not working refused to set unsafe
+    headers: new HttpHeaders({
+      //'Content-Type': 'application/json', //removing the header option as without it also this works tested via postman
+      //'Access-Control-Request-Headers': 'Origin, Content-Type, X-Auth-Token, content-type', //main.7c2d8c1bc547b29396b0.js:1 Refused to set unsafe header "Access-Control-Request-Headers"
+      'Access-Control-Request-Headers': '*',
+      'Access-Control-Allow-Methods': 'GET,POST',
+      'Origin': '*', // Refused to set unsafe header "Origin"
+      //'Accept':'text/html, application/xhtml+xml, application/xml;q=0.9, */  /**;q=0.8',
+    }),
+  };
+
   constructor(
     private route: ActivatedRoute,
     private service: ConfigService,
     private http: HttpClient
   ) {}
-
-  httpOptions = {
-    headers: new HttpHeaders({
-      //'Content-Type': 'application/json', //removing the header option as without it also this works tested via postman
-      //'Access-Control-Request-Headers': 'Origin, Content-Type, X-Auth-Token, content-type', //main.7c2d8c1bc547b29396b0.js:1 Refused to set unsafe header "Access-Control-Request-Headers"
-      'Access-Control-Request-Headers':'*', 
-      'Access-Control-Allow-Methods': 'GET,POST,PATCH,DELETE,PUT,OPTIONS', 
-      //'Origin': '*',// Refused to set unsafe header "Origin"
-      //'Accept':'text/html, application/xhtml+xml, application/xml;q=0.9, */*;q=0.8',
-    }),
-  };
 
   linkedInCredentials = {
     clientId: '78xnztjf0u5umr',
@@ -51,8 +56,7 @@ console.log(res.json.access_token);
 // this.json = JSON.parse(res.json);
 });*/
     console.log(this.linkedInToken);
-
-    /*this.http
+    const req = this.http
       .put(
         `https://www.linkedin.com/oauth/v2/accessToken?&grant_type=authorization_code&code=${this.linkedInToken}&redirect_uri=${this.linkedInCredentials.redirectUrl}&client_id=${this.linkedInCredentials.clientId}&client_secret=${this.linkedInCredentials.clientsecret}`,
         null,
@@ -62,14 +66,28 @@ console.log(res.json.access_token);
         (res: any) => {
           console.log(res);
         },
-        (err) => {
-          console.log(err.message);
+        (err: HttpErrorResponse) => {
+          if (err.error instanceof Error) {
+            console.log('Client-side error occured.');
+          } else {
+            console.log('Server-side error occured.');
+          }
         }
-      );*/
-        this.http.get(`https://www.linkedin.com/oauth/v2/accessToken?&grant_type=authorization_code&code=${this.linkedInToken}&redirect_uri=${this.linkedInCredentials.redirectUrl}&client_id=${this.linkedInCredentials.clientId}&client_secret=${this.linkedInCredentials.clientsecret}`).subscribe(data =>{
-          console.log(data);
-          
-        })
+      );
+    /*this.http.get(`https://www.linkedin.com/oauth/v2/accessToken?&grant_type=authorization_code&code=${this.linkedInToken}&redirect_uri=${this.linkedInCredentials.redirectUrl}&client_id=${this.linkedInCredentials.clientId}&client_secret=${this.linkedInCredentials.clientsecret}`)
+    .subscribe(
+      data =>{
+      console.log(data);
+      
+    },
+    (err: HttpErrorResponse) =>
+    {
+      if (err.error instanceof Error) {
+        console.log('Client-side error occured.');
+      } else {
+        console.log('Server-side error occured.');
+      }
     }
-
+    )*/
+  }
 }
