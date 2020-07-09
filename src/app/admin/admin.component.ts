@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ConfigService } from '../config.service'
-import {HttpClient, HttpHeaders } from '@angular/common/http';
+import {HttpClient, HttpHeaders, } from '@angular/common/http';
 
 @Component({
   selector: 'app-admin',
@@ -28,8 +28,7 @@ export class AdminComponent implements OnInit {
   httpOptions = {
     headers: new HttpHeaders({
       //'Content-Type': 'application/json', //removing the header option as without it also this works tested via postman
-      'Access-Control-Allow-Origin':'https://linkedinsociallogin.herokuapp.com/',
-      'Vary': 'Origin'
+      'Access-Control-Request-Headers':  'https://linkedinsociallogin.herokuapp.com/' || '*',
     }),
   };
 
