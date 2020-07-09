@@ -52,7 +52,7 @@ console.log(res.json.access_token);
 });*/
     console.log(this.linkedInToken);
 
-    this.http
+    /*this.http
       .put(
         `https://www.linkedin.com/oauth/v2/accessToken?&grant_type=authorization_code&code=${this.linkedInToken}&redirect_uri=${this.linkedInCredentials.redirectUrl}&client_id=${this.linkedInCredentials.clientId}&client_secret=${this.linkedInCredentials.clientsecret}`,
         null,
@@ -65,6 +65,6 @@ console.log(res.json.access_token);
         (err) => {
           console.log(err.message);
         }
-      );
+      );*/
   }
 }
