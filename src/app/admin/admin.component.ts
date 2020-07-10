@@ -73,7 +73,7 @@ export class AdminComponent implements OnInit {
 
                   this.firstName = data.firstName.localized.en_US;
                   this.lastName = data.lastName.localized.en_US;
-                  this.photoUrl = data.identifiers[0];
+                  this.photoUrl =(data.profilePicture.displayImage`~`.elements[0].identifiers[0].identifier) 
                   console.log(this.firstName);
                   console.log(this.lastName);
                   console.log(this.photoUrl);
