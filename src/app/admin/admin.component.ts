@@ -60,7 +60,8 @@ export class AdminComponent implements OnInit {
       );
 
     console.log('hi I will be editing here ---------');
-
+        console.log(this.accessToken);
+        
     //3rd Get
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.accessToken}`,
