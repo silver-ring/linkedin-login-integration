@@ -49,6 +49,27 @@ export class AdminComponent implements OnInit {
           this.accessToken = data.access_token;
           console.log(this.accessToken + 'From component ');
           localStorage.setItem('token', this.accessToken);
+
+              console.log('hi I will be editing here ---------');
+              console.log(this.accessToken + 'hello------------');
+
+              //3rd Get
+              const headers = new HttpHeaders({
+                'Authorization': `Bearer ${this.accessToken}`,
+                'Connection': 'Keep-Alive',
+              });
+              this.http
+                .get<any>(
+                  `https://api.linkedin.com/v2/me?oauth2_access_token=${this.accessToken}`
+                )
+                .subscribe((data: any) => {
+                  console.log(JSON.stringify(data));
+                  this.json = data.total;
+                  console.log(this.json);
+                });
+
+
+
         },
         (err: HttpErrorResponse) => {
           if (err.error instanceof Error) {
@@ -59,20 +80,6 @@ export class AdminComponent implements OnInit {
         }
       );
 
-        console.log('hi I will be editing here ---------');
-        console.log(this.accessToken+'hello------------');
-        
-    //3rd Get
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${this.accessToken}`,
-      'Connection': 'Keep-Alive',
-    });
-    this.http
-      .get<any>(`https://api.linkedin.com/v2/me?oauth2_access_token=${this.accessToken}`)
-      .subscribe((data: any) => {
-        console.log(JSON.stringify(data));
-        this.json = data.total;
-        console.log(this.json);
-      });
+    
   }
 }
