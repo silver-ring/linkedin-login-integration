@@ -15,15 +15,16 @@ import {
 })
 export class AdminComponent implements OnInit {
   linkedInToken = '';
-  accessToken = '';
-  data;
+  
+  /*data;
   public postResponse = {
     accessToken: '',
     refreshtime: '',
-  };
+  };*/
+
+  accesstoken: any;
 
   json;
-
   httpOptions = {
     // not working refused to set unsafe
     headers: new HttpHeaders({
@@ -87,7 +88,7 @@ console.log(res.json.access_token);
     //post request ends here
 
     this.http
-      .post(
+      .post<any>(
         `https://www.linkedin.com/oauth/v2/accessToken?&grant_type=authorization_code&code=${this.linkedInToken}&redirect_uri=${this.linkedInCredentials.redirectUrl}&client_id=${this.linkedInCredentials.clientId}&client_secret=${this.linkedInCredentials.clientsecret}`,
         this.paramsOptions,
         this.httpOptions
@@ -95,6 +96,7 @@ console.log(res.json.access_token);
       .subscribe(
         (data) => {
           console.log(JSON.stringify(data));
+          this.accesstoken = data.access_token;
         },
         (err: HttpErrorResponse) => {
           if (err.error instanceof Error) {
