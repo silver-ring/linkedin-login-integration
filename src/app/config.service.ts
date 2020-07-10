@@ -54,22 +54,6 @@ export class ConfigService {
         this.httpOptions
       )
       
-      /* // not working as expected 
-      .subscribe(
-        (data) => {
-          console.log(JSON.stringify(data));
-          this.accesstoken = data.access_token;
-          console.log(this.accesstoken +"From service ");
-          
-        },
-        (err: HttpErrorResponse) => {
-          if (err.error instanceof Error) {
-            console.log('Client-side error occured.');
-          } else {
-            console.log('Server-side error occured.');
-          }
-        }
-      );
-      */
+
   }
 }

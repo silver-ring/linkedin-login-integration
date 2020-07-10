@@ -22,45 +22,17 @@ export class AdminComponent implements OnInit {
 
   public accessToken= '';
 
-   /**;q=0.8',
-    }),
-  };
-
-  paramsOptions = {
-    header: new XMLHttpRequest(),
-  };
-*/
-
-  /*   //getting the token from the service 
-  httpOptions = {
-    // not working refused to set unsafe
-    headers: new HttpHeaders({
-      //'Content-Type': 'application/json', //removing the header option as without it also this works tested via postman
-      //'Access-Control-Request-Headers': 'Origin, Content-Type, X-Auth-Token, content-type', //main.7c2d8c1bc547b29396b0.js:1 Refused to set unsafe header "Access-Control-Request-Headers"
-      'Access-Control-Request-Headers': '*',
-      'Access-Control-Allow-Methods': 'GET,POST',
-      Origin: '*', // Refused to set unsafe header "Origin"
-      //'Accept':'text/html, application/xhtml+xml, application/xml;q=0.9, */ //getting the token from the servce
+   
   constructor(
     private route: ActivatedRoute,
     private service: ConfigService,
     private http: HttpClient
   ) {}
-  //  Getting the access token from service
-  /*
-  linkedInCredentials = {
-    clientId: '78xnztjf0u5umr',
-    clientsecret: 'edznXLWlJ8C4ppIh',
-    redirectUrl: 'https://linkedinsociallogin.herokuapp.com/admin',
-  };
-*/
+
   ngOnInit() {
     this.linkedInToken = this.service.codeInResponse(this.linkedInToken);
 
-    /*  this.service.exchangeAuthCode(this.accessToken).subscribe((res: any) => {  // not working only giving error statusText: "Unknown Error" 
-console.log(res.json.access_token);
-// this.json = JSON.parse(res.json);
-});*/
+    
     console.log(this.linkedInToken);
 
     this.accesstoken = this.service
@@ -69,7 +41,7 @@ console.log(res.json.access_token);
         (data) => {
           console.log(JSON.stringify(data));
           this.accessToken = data.access_token;
-          console.log(this.accessToken + 'From service ');
+          console.log(this.accessToken + 'From component ');
         },
         (err: HttpErrorResponse) => {
           if (err.error instanceof Error) {
@@ -80,11 +52,6 @@ console.log(res.json.access_token);
         }
       );
 
-   // console.log(this.accesstoken+"From the admin");
-
-   // this.accessToken=this.accesstoken.access_token;
-
-    console.log(this.accessToken+"2nd time ");
 
 
 
