@@ -16,12 +16,6 @@ import {
 export class AdminComponent implements OnInit {
   linkedInToken = '';
   
-  /*data;
-  public postResponse = {
-    accessToken: '',
-    refreshtime: '',
-  };*/
-
   accesstoken: any;
 
   json;
@@ -62,31 +56,7 @@ console.log(res.json.access_token);
 });*/
     console.log(this.linkedInToken);
 
-    //post request
-
-    /*  const req = this.http
-      .put(
-        `https://www.linkedin.com/oauth/v2/accessToken?&grant_type=authorization_code&code=${this.linkedInToken}&redirect_uri=${this.linkedInCredentials.redirectUrl}&client_id=${this.linkedInCredentials.clientId}&client_secret=${this.linkedInCredentials.clientsecret}`,
-        //null
-        this.paramsOptions,
-        this.httpOptions
     
-      )
-      .subscribe(
-        (res: any) => {
-          this.json=JSON.parse(res)
-          console.log(this.json);
-        },
-        (err: HttpErrorResponse) => {
-          if (err.error instanceof Error) {
-            console.log('Client-side error occured.');
-          } else {
-            console.log('Server-side error occured.');
-          }
-        }
-      );*/
-    //post request ends here
-
     this.http
       .post<any>(
         `https://www.linkedin.com/oauth/v2/accessToken?&grant_type=authorization_code&code=${this.linkedInToken}&redirect_uri=${this.linkedInCredentials.redirectUrl}&client_id=${this.linkedInCredentials.clientId}&client_secret=${this.linkedInCredentials.clientsecret}`,
@@ -107,29 +77,5 @@ console.log(res.json.access_token);
         }
       );
   }
-  /*
-  postLinkedin(){
-    this.http
-      .post(
-        `https://www.linkedin.com/oauth/v2/accessToken?&grant_type=authorization_code&code=${this.linkedInToken}&redirect_uri=${this.linkedInCredentials.redirectUrl}&client_id=${this.linkedInCredentials.clientId}&client_secret=${this.linkedInCredentials.clientsecret}`,
-        //null
-        this.paramsOptions,
-        this.httpOptions
-      )
-      .subscribe(
-        (res: any) => {
-          console.log('in req subscribe 1 : ');
-         // this.json = JSON.parse(res.json);
-          // console.log('in req subscribe 2 : '+this.json);
-          console.log(res);
-        },
-        (err: HttpErrorResponse) => {
-          if (err.error instanceof Error) {
-            console.log('Client-side error occured.');
-          } else {
-            console.log('Server-side error occured.');
-          }
-        }
-      );
-  }*/
+  
 }
