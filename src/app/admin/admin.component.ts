@@ -51,43 +51,12 @@ export class AdminComponent implements OnInit {
             console.log('Server-side error occured.');
           }
         }
+
       );
 
+      console.log("hi I will be editing here ---------");
+        
 
 
-
-
-
-
-
-
-
-
-
-
-
-    //Working live Code for access token
-
-    /* 
-    this.http
-      .post<any>(
-        `https://www.linkedin.com/oauth/v2/accessToken?&grant_type=authorization_code&code=${this.linkedInToken}&redirect_uri=${this.linkedInCredentials.redirectUrl}&client_id=${this.linkedInCredentials.clientId}&client_secret=${this.linkedInCredentials.clientsecret}`,
-        this.paramsOptions,
-        this.httpOptions
-      )
-      .subscribe(
-        (data) => {
-          console.log(JSON.stringify(data));
-          this.accesstoken = data.access_token;
-        },
-        (err: HttpErrorResponse) => {
-          if (err.error instanceof Error) {
-            console.log('Client-side error occured.');
-          } else {
-            console.log('Server-side error occured.');
-          }
-        }
-      );*/
-    //working live code for access token ends here .................
   }
 }
