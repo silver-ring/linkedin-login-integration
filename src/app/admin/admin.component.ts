@@ -62,6 +62,7 @@ console.log(res.json.access_token);
     console.log(this.linkedInToken);
 
     //post request
+
     /*  const req = this.http
       .put(
         `https://www.linkedin.com/oauth/v2/accessToken?&grant_type=authorization_code&code=${this.linkedInToken}&redirect_uri=${this.linkedInCredentials.redirectUrl}&client_id=${this.linkedInCredentials.clientId}&client_secret=${this.linkedInCredentials.clientsecret}`,
@@ -85,23 +86,26 @@ console.log(res.json.access_token);
       );*/
     //post request ends here
 
-    /*this.http.get(`https://www.linkedin.com/oauth/v2/accessToken?&grant_type=authorization_code&code=${this.linkedInToken}&redirect_uri=${this.linkedInCredentials.redirectUrl}&client_id=${this.linkedInCredentials.clientId}&client_secret=${this.linkedInCredentials.clientsecret}`)
-    .subscribe(
-      data =>{
-      console.log(data);
-      
-    },
-    (err: HttpErrorResponse) =>
-    {
-      if (err.error instanceof Error) {
-        console.log('Client-side error occured.');
-      } else {
-        console.log('Server-side error occured.');
-      }
-    }
-    )*/
+    this.http
+      .post(
+        `https://www.linkedin.com/oauth/v2/accessToken?&grant_type=authorization_code&code=${this.linkedInToken}&redirect_uri=${this.linkedInCredentials.redirectUrl}&client_id=${this.linkedInCredentials.clientId}&client_secret=${this.linkedInCredentials.clientsecret}`,
+        this.paramsOptions,
+        this.httpOptions
+      )
+      .subscribe(
+        (data) => {
+          console.log(data);
+        },
+        (err: HttpErrorResponse) => {
+          if (err.error instanceof Error) {
+            console.log('Client-side error occured.');
+          } else {
+            console.log('Server-side error occured.');
+          }
+        }
+      );
   }
-
+  /*
   postLinkedin(){
     this.http
       .post(
@@ -125,5 +129,5 @@ console.log(res.json.access_token);
           }
         }
       );
-  }
+  }*/
 }
