@@ -16,7 +16,7 @@ import {
 export class AdminComponent implements OnInit {
   linkedInToken = '';
   accessToken = '';
-
+  data;
   public postResponse = {
     accessToken: '',
     refreshtime: '',
@@ -94,7 +94,7 @@ console.log(res.json.access_token);
       )
       .subscribe(
         (data) => {
-          console.log(data);
+          console.log(JSON.stringify(data));
         },
         (err: HttpErrorResponse) => {
           if (err.error instanceof Error) {

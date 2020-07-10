@@ -13,7 +13,7 @@ import { analyzeAndValidateNgModules } from '@angular/compiler';
 export class ConfigService {
   linkedInToken = '';
   accessToken = '';
-
+ 
   httpOptions = {
     // not working refused to set unsafe
     headers: new HttpHeaders({
