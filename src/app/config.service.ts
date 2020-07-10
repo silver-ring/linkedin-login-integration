@@ -53,6 +53,8 @@ export class ConfigService {
         this.paramsOptions,
         this.httpOptions
       )
+      
+      /* // not working as expected 
       .subscribe(
         (data) => {
           console.log(JSON.stringify(data));
@@ -68,5 +70,6 @@ export class ConfigService {
           }
         }
       );
+      */
   }
 }

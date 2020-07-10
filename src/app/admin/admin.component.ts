@@ -63,13 +63,41 @@ console.log(res.json.access_token);
 });*/
     console.log(this.linkedInToken);
 
-    this.accesstoken = this.service.exchangeAuthCode(this.accesstoken.access_token);
+    this.accesstoken = this.service
+      .exchangeAuthCode(this.accesstoken)
+      .subscribe(
+        (data) => {
+          console.log(JSON.stringify(data));
+          this.accessToken = data.access_token;
+          console.log(this.accessToken + 'From service ');
+        },
+        (err: HttpErrorResponse) => {
+          if (err.error instanceof Error) {
+            console.log('Client-side error occured.');
+          } else {
+            console.log('Server-side error occured.');
+          }
+        }
+      );
 
-    console.log(this.accesstoken+"From the admin");
+   // console.log(this.accesstoken+"From the admin");
 
-    this.accessToken=this.accesstoken.access_token;
+   // this.accessToken=this.accesstoken.access_token;
 
-    console.log(this.accessToken+"2nd time ");
+   // console.log(this.accessToken+"2nd time ");
+
+
+
+
+
+
+
+
+
+
+
+
+
     //Working live Code for access token
 
     /* 
