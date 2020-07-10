@@ -16,7 +16,7 @@ import { analyzeAndValidateNgModules } from '@angular/compiler';
 })
 export class ConfigService {
   linkedInToken = '';
-  accesstoken: any;
+  accesstoken :any;
 
   httpOptions = {
     // not working refused to set unsafe
