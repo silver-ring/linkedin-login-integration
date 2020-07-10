@@ -19,6 +19,8 @@ export class AdminComponent implements OnInit {
   accesstoken: any;
 
   json;
+
+ /*   //getting the token from the service 
   httpOptions = {
     // not working refused to set unsafe
     headers: new HttpHeaders({
@@ -34,19 +36,22 @@ export class AdminComponent implements OnInit {
   paramsOptions = {
     header: new XMLHttpRequest(),
   };
+*/
 
+//getting the token from the servce 
   constructor(
     private route: ActivatedRoute,
     private service: ConfigService,
     private http: HttpClient
   ) {}
-
+//  Getting the access token from service 
+/*
   linkedInCredentials = {
     clientId: '78xnztjf0u5umr',
     clientsecret: 'edznXLWlJ8C4ppIh',
     redirectUrl: 'https://linkedinsociallogin.herokuapp.com/admin',
   };
-
+*/
   ngOnInit() {
     this.linkedInToken = this.service.codeInResponse(this.linkedInToken);
 
@@ -56,7 +61,12 @@ console.log(res.json.access_token);
 });*/
     console.log(this.linkedInToken);
 
-    
+    this.accesstoken=this.service.exchangeAuthCode(this.accesstoken);
+
+    console.log(this.accesstoken);
+//Working live Code for access token 
+
+   /* 
     this.http
       .post<any>(
         `https://www.linkedin.com/oauth/v2/accessToken?&grant_type=authorization_code&code=${this.linkedInToken}&redirect_uri=${this.linkedInCredentials.redirectUrl}&client_id=${this.linkedInCredentials.clientId}&client_secret=${this.linkedInCredentials.clientsecret}`,
@@ -75,7 +85,8 @@ console.log(res.json.access_token);
             console.log('Server-side error occured.');
           }
         }
-      );
+      );*/
+      //working live code for access token ends here .................
   }
   
 }
