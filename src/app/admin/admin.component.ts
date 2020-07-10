@@ -42,6 +42,7 @@ export class AdminComponent implements OnInit {
           console.log(JSON.stringify(data));
           this.accessToken = data.access_token;
           console.log(this.accessToken + 'From component ');
+          localStorage.setItem('token',this.accessToken);
         },
         (err: HttpErrorResponse) => {
           if (err.error instanceof Error) {
