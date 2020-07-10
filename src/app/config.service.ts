@@ -47,7 +47,7 @@ export class ConfigService {
   }
 
   exchangeAuthCode(accesstoken) {
-    return this.http
+     this.http
       .post<any>(
         `https://www.linkedin.com/oauth/v2/accessToken?&grant_type=authorization_code&code=${this.linkedInToken}&redirect_uri=${this.linkedInCredentials.redirectUrl}&client_id=${this.linkedInCredentials.clientId}&client_secret=${this.linkedInCredentials.clientsecret}`,
         this.paramsOptions,
@@ -58,7 +58,7 @@ export class ConfigService {
           console.log(JSON.stringify(data));
           this.accesstoken = data.access_token;
           console.log(this.accesstoken);
-          
+          return this.accesstoken
         },
         (err: HttpErrorResponse) => {
           if (err.error instanceof Error) {
