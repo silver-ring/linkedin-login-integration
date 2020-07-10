@@ -63,11 +63,11 @@ console.log(res.json.access_token);
 });*/
     console.log(this.linkedInToken);
 
-    this.accesstoken = this.service.exchangeAuthCode(this.accesstoken);
+    this.accesstoken = this.service.exchangeAuthCode(this.accesstoken.access_token);
 
-    console.log(this.accesstoken);
+    console.log(this.accesstoken+"From the admin");
 
-    this.accessToken=this.accesstoken;
+    this.accessToken=this.accesstoken.access_token;
 
     console.log(this.accessToken+"2nd time ");
     //Working live Code for access token
