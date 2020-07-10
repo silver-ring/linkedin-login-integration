@@ -64,7 +64,8 @@ export class AdminComponent implements OnInit {
               });
               this.http
                 .get<any>(
-                  `https://api.linkedin.com/v2/me?oauth2_access_token=${this.accessToken}`
+                  'https://api.linkedin.com/v2/me?projection=(id,firstName,lastName,profilePicture(displayImage~:playableStreams))',
+                  { headers }
                 )
                 .subscribe((data: any) => {
                   console.log(JSON.stringify(data));
@@ -76,9 +77,7 @@ export class AdminComponent implements OnInit {
                   console.log(this.firstname);
                   console.log(this.lastName);
                   console.log(this.photoUrl);
-                  
-                  
-                  
+
                   console.log(this.json);
                 });
 
