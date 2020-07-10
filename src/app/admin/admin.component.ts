@@ -59,8 +59,8 @@ export class AdminComponent implements OnInit {
         }
       );
 
-    console.log('hi I will be editing here ---------');
-        console.log(this.accessToken);
+        console.log('hi I will be editing here ---------');
+        console.log(this.accessToken+'hello------------');
         
     //3rd Get
     const headers = new HttpHeaders({
