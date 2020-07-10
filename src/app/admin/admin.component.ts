@@ -19,6 +19,10 @@ export class AdminComponent implements OnInit {
   accesstoken: any;
 
   json;
+  firstname;
+  lastName;
+  photoUrl;
+
 
   public accessToken = '';
 
@@ -65,6 +69,16 @@ export class AdminComponent implements OnInit {
                 .subscribe((data: any) => {
                   console.log(JSON.stringify(data));
                   this.json = data.total;
+
+                  this.firstname = data.localizedFirstName;
+                  this.lastName = data.localizedLastName;
+                  this.photoUrl = data.profilePicture.displayImage;
+                  console.log(this.firstname);
+                  console.log(this.lastName);
+                  console.log(this.photoUrl);
+                  
+                  
+                  
                   console.log(this.json);
                 });
 
