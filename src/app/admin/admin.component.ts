@@ -16,13 +16,19 @@ import {
 export class AdminComponent implements OnInit {
   linkedInToken = '';
 
-  accesstoken :any ; 
+  accesstoken: any;
 
-  json; 
+  json;
 
-  public accessToken= '';
+  public accessToken = '';
 
-   
+  /*httpOptions = {
+    headers: new HttpHeaders({
+      Connection: 'Keep-Alive',
+      'Authorization ': `Bearer ${this.accessToken}`,
+    }),
+  };*/
+
   constructor(
     private route: ActivatedRoute,
     private service: ConfigService,
@@ -30,11 +36,11 @@ export class AdminComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    //1st Get
     this.linkedInToken = this.service.codeInResponse(this.linkedInToken);
 
-    
     console.log(this.linkedInToken);
-
+    //2nd Post
     this.accesstoken = this.service
       .exchangeAuthCode(this.accesstoken)
       .subscribe(
@@ -42,7 +48,7 @@ export class AdminComponent implements OnInit {
           console.log(JSON.stringify(data));
           this.accessToken = data.access_token;
           console.log(this.accessToken + 'From component ');
-          localStorage.setItem('token',this.accessToken);
+          localStorage.setItem('token', this.accessToken);
         },
         (err: HttpErrorResponse) => {
           if (err.error instanceof Error) {
@@ -51,12 +57,20 @@ export class AdminComponent implements OnInit {
             console.log('Server-side error occured.');
           }
         }
-
       );
 
-      console.log("hi I will be editing here ---------");
-        
+    console.log('hi I will be editing here ---------');
 
-
+    //3rd Get
+    this.http.get(`https://api.linkedin.com/v2/me?`,{
+    headers: new HttpHeaders({
+      'Connection': 'Keep-Alive',
+      'Authorization ': `Bearer ${this.accessToken}`  }),
+    }
+        ).subscribe(
+            (data) => {
+                  console.log(JSON.stringify(data))
+        }
+      )
   }
 }
