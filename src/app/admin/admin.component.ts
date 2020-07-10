@@ -62,14 +62,16 @@ export class AdminComponent implements OnInit {
     console.log('hi I will be editing here ---------');
 
     //3rd Get
-    const headers = new HttpHeaders({ 'Authorization': `Bearer ${this.accessToken}`, 'Connection': 'Keep-Alive' });
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.accessToken}`,
+      'Connection': 'Keep-Alive',
+    });
     this.http
-      .get<any>(`https://api.linkedin.com/v2/me?`, { headers })
+      .get<any>('https://api.linkedin.com/v2/me', { headers })
       .subscribe((data: any) => {
         console.log(JSON.stringify(data));
-        this.json= data.total;
+        this.json = data.total;
         console.log(this.json);
-        
       });
   }
 }
