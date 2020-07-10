@@ -67,7 +67,7 @@ export class AdminComponent implements OnInit {
       'Connection': 'Keep-Alive',
     });
     this.http
-      .get<any>('https://api.linkedin.com/v2/me', { headers })
+      .get<any>(`https://api.linkedin.com/v2/me?oauth2_access_token=${this.accessToken}`)
       .subscribe((data: any) => {
         console.log(JSON.stringify(data));
         this.json = data.total;
