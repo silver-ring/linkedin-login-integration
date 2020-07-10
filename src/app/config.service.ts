@@ -58,7 +58,7 @@ export class ConfigService {
           console.log(JSON.stringify(data));
           this.accesstoken = data.access_token;
           console.log(this.accesstoken);
-          return this.accesstoken
+          return this.accesstoken;
         },
         (err: HttpErrorResponse) => {
           if (err.error instanceof Error) {
