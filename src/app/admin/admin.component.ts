@@ -74,7 +74,8 @@ export class AdminComponent implements OnInit {
 
               this.firstName = data.firstName.localized.en_US;
               this.lastName = data.lastName.localized.en_US;
-              const photoPic = JSON.parse(data);
+              const photoPic = JSON.parse(data.total);
+
               this.photoUrl=(
                 photoPic['profilePicture']['displayImage~'].elements[0]
                   .identifiers[0].identifier
