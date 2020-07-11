@@ -72,7 +72,7 @@ export class AdminComponent implements OnInit {
               console.log(JSON.stringify(data));
               this.json = data;
               console.log(this.json+"trying----------");
-              const photoPic = JSON.parse(data);
+              const photoPic = data; // we cannot parse a already parsed data 
               console.log(photoPic+"guessing+++++++++++");
               this.firstName = data.firstName.localized.en_US;
               this.lastName = data.lastName.localized.en_US;
