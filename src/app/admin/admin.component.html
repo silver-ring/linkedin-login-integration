@@ -2,6 +2,12 @@
 <p>Your linkedIn code = {{ linkedInToken }}</p>
 <!--<button (click)="postLinkedin()">Post fot token </button>-->
 <p>Access token is : {{ accessToken }} </p>
-<p>{{firstName}}</p>
-<p>{{lastName}}</p>
-<p>{{photoUrl}}</p>
+
+
+
+<div class="card-block"></div>
+<img class="card-img-top img-responsive photo" src="{{photoUrl}}">
+<div class="card-block">
+    <h4 class="card-title">{{firstName }}</h4>
+    <p class="card-text">{{ lastName }}</p>
+</div>

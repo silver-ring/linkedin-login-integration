@@ -81,7 +81,7 @@ export class AdminComponent implements OnInit {
               console.log(this.lastName);
               
               this.photoUrl=(
-                photoPic['profilePicture']['displayImage~'].elements[0]
+                data['profilePicture']['displayImage~'].elements[0]
                   .identifiers[0].identifier
               );
               //this.photoUrl =data.profilePicture.displayImage~.elements[0].identifiers[0].identifier
