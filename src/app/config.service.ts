@@ -16,7 +16,7 @@ import { analyzeAndValidateNgModules } from '@angular/compiler';
 })
 export class ConfigService {
   linkedInToken = '';
-  accesstoken :any;
+  accesstoken: any;
 
   httpOptions = {
     // not working refused to set unsafe
@@ -25,7 +25,7 @@ export class ConfigService {
       //'Access-Control-Request-Headers': 'Origin, Content-Type, X-Auth-Token, content-type', //main.7c2d8c1bc547b29396b0.js:1 Refused to set unsafe header "Access-Control-Request-Headers"
       'Access-Control-Request-Headers': '*',
       'Access-Control-Allow-Methods': 'GET,POST',
-      'Origin': '*', // Refused to set unsafe header "Origin"
+      Origin: '*', // Refused to set unsafe header "Origin"
       //'Accept':'text/html, application/xhtml+xml, application/xml;q=0.9, */  /**;q=0.8',
     }),
   };
@@ -47,13 +47,16 @@ export class ConfigService {
   }
 
   exchangeAuthCode(accesstoken) {
-     return this.http
-      .post<any>(
-        `https://www.linkedin.com/oauth/v2/accessToken?&grant_type=authorization_code&code=${this.linkedInToken}&redirect_uri=${this.linkedInCredentials.redirectUrl}&client_id=${this.linkedInCredentials.clientId}&client_secret=${this.linkedInCredentials.clientsecret}`,
-        this.paramsOptions,
-        this.httpOptions
-      )
-      
+    return this.http.post<any>(
+      `https://www.linkedin.com/oauth/v2/accessToken?&grant_type=authorization_code&code=${this.linkedInToken}&redirect_uri=${this.linkedInCredentials.redirectUrl}&client_id=${this.linkedInCredentials.clientId}&client_secret=${this.linkedInCredentials.clientsecret}`,
+      this.paramsOptions,
+      this.httpOptions
+    );
+  }
 
+  loggedIn() {
+    //we want a boolean value
+    return !!localStorage.getItem('token');
+    // return !!sessionStorage.getItem('token') ;
   }
 }

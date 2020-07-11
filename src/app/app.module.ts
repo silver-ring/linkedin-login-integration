@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import { ConfigService } from './config.service';
 import { HttpInterceptorInterceptor } from './http-interceptor.interceptor';
+import { AuthGuard } from './auth.guard';
 
 
 
@@ -16,6 +17,7 @@ import { HttpInterceptorInterceptor } from './http-interceptor.interceptor';
   imports: [BrowserModule, HttpClientModule, AppRoutingModule],
   providers: [
     ConfigService,
+    AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpInterceptorInterceptor,
