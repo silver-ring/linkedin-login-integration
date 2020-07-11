@@ -15,7 +15,13 @@ export class LoginComponent implements OnInit {
     redirectUrl: 'https://linkedinsociallogin.herokuapp.com/admin',
   };
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) {
+    if (localStorage.getItem('token')) {
+      this.router.navigate(['/admin']);
+    } else {
+      this.router.navigate(['/login']);
+    }
+  }
 
   linkedinLogin() {
     window.location.href =
