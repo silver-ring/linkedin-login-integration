@@ -14,12 +14,11 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot): boolean {
      if (this.configService.loggedIn()) {
        console.log('true');
-       return true;
        this.router.navigateByUrl('/admin');
-     } else {
+       return true;
+       } else {
        console.log('false');
        localStorage.removeItem('token');
-       
        this.router.navigateByUrl('/login');
        return false;
      }
