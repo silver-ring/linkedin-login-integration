@@ -103,8 +103,6 @@ export class AdminComponent implements OnInit {
     alert('hii in session signout');
     localStorage.removeItem('token');
     localStorage.clear();
-    //localStorage.removeItem('token');
-    //localStorage.clear();
     alert('token deleted !!!??');
     this.router.navigate(['/login']);
     console.log('done');
