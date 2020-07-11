@@ -37,8 +37,9 @@ export class AdminComponent implements OnInit {
     private route: ActivatedRoute,
     private service: ConfigService,
     private http: HttpClient,
-    //private resolve: Resolve<any>
-  ) {}
+    private router: Router
+  ) //private resolve: Resolve<any>
+  {}
 
   ngOnInit() {
     //1st Get
@@ -71,24 +72,23 @@ export class AdminComponent implements OnInit {
             .subscribe((data: any) => {
               console.log(JSON.stringify(data));
               this.json = data;
-              console.log(this.json+"trying----------");
-              const photoPic = data; // we cannot parse a already parsed data 
-              console.log(photoPic+"guessing+++++++++++");
+              console.log(this.json + 'trying----------');
+              const photoPic = data; // we cannot parse a already parsed data
+              console.log(photoPic + 'guessing+++++++++++');
               this.firstName = data.firstName.localized.en_US;
               this.lastName = data.lastName.localized.en_US;
-              console.log("Before Parsing");
+              console.log('Before Parsing');
               console.log(this.firstName);
               console.log(this.lastName);
-              
-              this.photoUrl=(
-                data['profilePicture']['displayImage~'].elements[0]
-                  .identifiers[0].identifier
-              );
-              //this.photoUrl =data.profilePicture.displayImage~.elements[0].identifiers[0].identifier
-              
-              console.log(this.photoUrl);
 
-              });
+              this.photoUrl =
+                data['profilePicture'][
+                  'displayImage~'
+                ].elements[0].identifiers[0].identifier;
+              //this.photoUrl =data.profilePicture.displayImage~.elements[0].identifiers[0].identifier
+
+              console.log(this.photoUrl);
+            });
         },
         (err: HttpErrorResponse) => {
           if (err.error instanceof Error) {
@@ -99,4 +99,15 @@ export class AdminComponent implements OnInit {
         }
       );
   }
+  signOut() {
+    alert('hii in session signout');
+    localStorage.removeItem('token');
+    localStorage.clear();
+    //localStorage.removeItem('token');
+    //localStorage.clear();
+    alert('token deleted !!!??');
+    this.router.navigate(['/login']);
+    console.log('done');
+  }
 }
+
