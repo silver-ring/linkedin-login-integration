@@ -4,7 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import { AuthGuard } from './auth.guard';
 import { ConfigService } from './config.service';
-
+import { AuthService } from './auth.service';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -16,7 +16,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  providers: [AuthGuard, ConfigService],
+  providers: [AuthGuard, ConfigService, AuthService],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
