@@ -40,7 +40,11 @@ export class AdminComponent implements OnInit {
     private router: Router
   ) //private resolve: Resolve<any>
   {
-     
+     if (localStorage.getItem('token')) {
+       this.router.navigate(['/admin']);
+     } else {
+       this.router.navigate(['/login']);
+     }
   }
 
   ngOnInit() {
