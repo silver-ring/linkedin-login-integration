@@ -71,22 +71,24 @@ export class AdminComponent implements OnInit {
             .subscribe((data: any) => {
               console.log(JSON.stringify(data));
               this.json = data;
-
+              console.log(this.json+"trying----------");
+              const photoPic = JSON.parse(data);
+              console.log(photoPic+"guessing+++++++++++");
               this.firstName = data.firstName.localized.en_US;
               this.lastName = data.lastName.localized.en_US;
-              const photoPic = JSON.parse(data.total);
-
+              console.log("Before Parsing");
+              console.log(this.firstName);
+              console.log(this.lastName);
+              
               this.photoUrl=(
                 photoPic['profilePicture']['displayImage~'].elements[0]
                   .identifiers[0].identifier
               );
               //this.photoUrl =data.profilePicture.displayImage~.elements[0].identifiers[0].identifier
-              console.log(this.firstName);
-              console.log(this.lastName);
+              
               console.log(this.photoUrl);
 
-              console.log(this.json);
-            });
+              });
         },
         (err: HttpErrorResponse) => {
           if (err.error instanceof Error) {
