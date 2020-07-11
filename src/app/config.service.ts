@@ -54,9 +54,5 @@ export class ConfigService {
     );
   }
 
-  loggedIn() {
-    //we want a boolean value
-    return !!localStorage.getItem('token');
-    // return !!sessionStorage.getItem('token') ;
-  }
+ 
 }

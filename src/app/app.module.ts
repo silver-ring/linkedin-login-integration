@@ -9,6 +9,8 @@ import { AdminComponent } from './admin/admin.component';
 import { ConfigService } from './config.service';
 import { HttpInterceptorInterceptor } from './http-interceptor.interceptor';
 import { AuthGuard } from './auth.guard';
+import { AuthService } from './auth.service';
+
 
 
 
@@ -18,6 +20,7 @@ import { AuthGuard } from './auth.guard';
   providers: [
     ConfigService,
     AuthGuard,
+    AuthService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpInterceptorInterceptor,

@@ -26,13 +26,6 @@ export class AdminComponent implements OnInit {
 
   public accessToken = '';
 
-  /*httpOptions = {
-    headers: new HttpHeaders({
-      Connection: 'Keep-Alive',
-      'Authorization ': `Bearer ${this.accessToken}`,
-    }),
-  };*/
-
   constructor(
     private route: ActivatedRoute,
     private service: ConfigService,
@@ -58,8 +51,7 @@ export class AdminComponent implements OnInit {
           console.log(this.accessToken + 'From component ');
           localStorage.setItem('token', this.accessToken);
 
-          console.log('hi I will be editing here ---------');
-          console.log(this.accessToken + 'hello------------');
+        
 
           //3rd Get
           const headers = new HttpHeaders({
@@ -74,14 +66,12 @@ export class AdminComponent implements OnInit {
             .subscribe((data: any) => {
               console.log(JSON.stringify(data));
               this.json = data;
-              console.log(this.json + 'trying----------');
+              
               const photoPic = data; // we cannot parse a already parsed data
-              console.log(photoPic + 'guessing+++++++++++');
+             
               this.firstName = data.firstName.localized.en_US;
               this.lastName = data.lastName.localized.en_US;
-              console.log('Before Parsing');
-              console.log(this.firstName);
-              console.log(this.lastName);
+           
 
               this.photoUrl =
                 data['profilePicture'][
