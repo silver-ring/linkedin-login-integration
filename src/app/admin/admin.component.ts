@@ -40,11 +40,7 @@ export class AdminComponent implements OnInit {
     private router: Router
   ) //private resolve: Resolve<any>
   {
-     if (localStorage.getItem('token')) {
-       this.router.navigate(['/admin']);
-     } else {
-       this.router.navigate(['/login']);
-     }
+     
   }
 
   ngOnInit() {
@@ -106,10 +102,10 @@ export class AdminComponent implements OnInit {
       );
   }
   signOut() {
-    alert('hii in session signout');
+    //alert('hii in session signout');
     localStorage.removeItem('token');
     localStorage.clear();
-    alert('token deleted !!!??');
+    //alert('token deleted !!!??');
     this.router.navigate(['/login']);
     console.log('done');
   }
