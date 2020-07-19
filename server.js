@@ -3,16 +3,18 @@ const path = require("path");
 const app = express();
 const cors = require("cors");
 app.use(cors());
-/*app.use(function(req,res,next){ /// this was not working error status 500 Internal server error 
-  res.header("Access - Control - Allow - Origin", "*");
- next();
-})*/
+app.use(function(req,res,next){ /// this was not working error status 500 Internal server error 
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "*" );  //"GET,PUT,POST,DELETE"
+  res.header("Access-Control-Allow-Headers", "Origin,X-Requested-With,Content-Type,Accept");
+  next();
+})
 
 /*
 var allowCrossDomain = function (req, res, next) {   //gave Application error so cant be launched 
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
-  res.header("Access-Control-Allow-Headers", "Content-Type");
+  res.header("Access-Control-Allow-Methods", "*" );  //"GET,PUT,POST,DELETE"
+  res.header("Access-Control-Allow-Headers", "Origin,X-Requested-With,Content-Type,Accept");
   next();
 };
 
