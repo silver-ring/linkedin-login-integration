@@ -1,5 +1,5 @@
 {
-  "name": "linkedin-social-login",
+  "name": "linkedin-login-integration",
   "version": "0.0.0",
   "scripts": {
     "heroku-postbuild": "ng build --prod",

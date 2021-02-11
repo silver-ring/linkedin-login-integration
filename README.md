@@ -1,27 +1,30 @@
-# LinkedinSocialLogin
+# Linkedin Login Integration
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.1.
+
+## Environment variables
+
+please change `environment.ts` with your values
+
+please note that callback should contain `admin` as callback path (ex. `http://localhost:4200/admin`) since this will be the endpoint which will handel the callback request
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Flow explanation
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+The following is the steps we execute to login using linkedin account:
 
-## Build
+1) (Authorization API)[https://www.linkedin.com/oauth/v2/authorization] for the user to access authatication for Andela
+2) (Access Token API)[https://www.linkedin.com/oauth/v2/accessToken] to fetch access token
+3) (Profile API)[https://api.linkedin.com/v2/me] to access user profile
+4) (Email API)[https://api.linkedin.com/v2/emailAddress] to access user email
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
+## Main components
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+We have two main angular components which they contain the main setup
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+- Login component (/src/app/admin): it contains the part which redirect to the `Authorization Api`
+- Admin component (/src/app/admin): it contains the callback part which will be executed after the callback and container the rest of the flow

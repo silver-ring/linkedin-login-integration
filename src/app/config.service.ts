@@ -1,14 +1,14 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {
   HttpClient,
   HttpHeaders,
   HttpErrorResponse,
 } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
-import { Router, ActivatedRoute, Params } from '@angular/router';
-import { analyzeAndValidateNgModules } from '@angular/compiler';
-
+import {Observable, throwError} from 'rxjs';
+import {catchError, retry} from 'rxjs/operators';
+import {Router, ActivatedRoute, Params} from '@angular/router';
+import {analyzeAndValidateNgModules} from '@angular/compiler';
+import {environment} from '../environments/environment';
 
 
 @Injectable({
@@ -21,12 +21,12 @@ export class ConfigService {
   httpOptions = {
     // not working refused to set unsafe
     headers: new HttpHeaders({
-      //'Content-Type': 'application/json', //removing the header option as without it also this works tested via postman
-      //'Access-Control-Request-Headers': 'Origin, Content-Type, X-Auth-Token, content-type', //main.7c2d8c1bc547b29396b0.js:1 Refused to set unsafe header "Access-Control-Request-Headers"
+      // 'Content-Type': 'application/json', //removing the header option as without it also this works tested via postman
+      // 'Access-Control-Request-Headers': 'Origin, Content-Type, X-Auth-Token, content-type', //main.7c2d8c1bc547b29396b0.js:1 Refused to set unsafe header "Access-Control-Request-Headers"
       'Access-Control-Request-Headers': '*',
-      'Access-Control-Allow-Methods': 'GET,POST',
+      'Access-Control-Allow-Methods': '*',
       Origin: '*', // Refused to set unsafe header "Origin"
-      //'Accept':'text/html, application/xhtml+xml, application/xml;q=0.9, */  /**;q=0.8',
+      // 'Accept':'text/html, application/xhtml+xml, application/xml;q=0.9, */  /**;q=0.8',
     }),
   };
   paramsOptions = {
@@ -34,25 +34,26 @@ export class ConfigService {
   };
 
   linkedInCredentials = {
-    clientId: '78xnztjf0u5umr',
-    clientsecret: 'edznXLWlJ8C4ppIh',
-    redirectUrl: 'https://linkedinsociallogin.herokuapp.com/admin',
+    clientId: environment.linkedIn.clientId,
+    clientsecret: environment.linkedIn.clientSecret,
+    redirectUrl: environment.linkedIn.redirectUrl,
   };
 
-  constructor(private http: HttpClient, private route: ActivatedRoute) {}
+  constructor(private http: HttpClient, private route: ActivatedRoute) {
+  }
 
   codeInResponse(linkedintoken) {
-    this.linkedInToken = this.route.snapshot.queryParams['code'];
+    this.linkedInToken = this.route.snapshot.queryParams.code;
     return this.linkedInToken;
   }
 
   exchangeAuthCode(accesstoken) {
-    return this.http.post<any>(
-      `https://www.linkedin.com/oauth/v2/accessToken?&grant_type=authorization_code&code=${this.linkedInToken}&redirect_uri=${this.linkedInCredentials.redirectUrl}&client_id=${this.linkedInCredentials.clientId}&client_secret=${this.linkedInCredentials.clientsecret}`,
-      this.paramsOptions,
+    const url = `https://www.linkedin.com/oauth/v2/accessToken?&grant_type=authorization_code&code=${this.linkedInToken}&redirect_uri=${this.linkedInCredentials.redirectUrl}&client_id=${this.linkedInCredentials.clientId}&client_secret=${this.linkedInCredentials.clientsecret}`;
+    return this.http.get<any>(
+      url,
       this.httpOptions
     );
   }
 
- 
+
 }

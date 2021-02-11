@@ -3,7 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  linkedIn: {
+    clientId: 'your-client-id',
+    clientSecret: 'your-client-secret',
+    redirectUrl: 'http://localhost:4200/admin'
+  }
 };
 
 /*

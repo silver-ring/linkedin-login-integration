@@ -1,7 +1,8 @@
 <div class="card-block"></div>
 <img class="card-img-top img-responsive photo" src="{{photoUrl}}">
 <div class="card-block">
-    <h4 class="card-title">{{firstName }}</h4>
-    <p class="card-text">{{ lastName }}</p>
+    <h4 class="card-text" *ngIf="firstName">first name: {{firstName }}</h4>
+    <p class="card-text" *ngIf="lastName">last name: {{ lastName }}</p>
+  <p class="card-text" *ngIf="email">email: {{ email }}</p>
 </div>
 <button class="btn btn-danger" (click)="signOut()">Sign out</button>

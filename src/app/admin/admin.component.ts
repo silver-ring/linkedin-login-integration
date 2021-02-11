@@ -23,6 +23,7 @@ export class AdminComponent implements OnInit {
   firstName;
   lastName;
   photoUrl;
+  email;
 
   public accessToken = '';
 
@@ -33,7 +34,7 @@ export class AdminComponent implements OnInit {
     private router: Router
   ) //private resolve: Resolve<any>
   {
-     
+
   }
 
   ngOnInit() {
@@ -51,7 +52,7 @@ export class AdminComponent implements OnInit {
           console.log(this.accessToken + 'From component ');
           localStorage.setItem('token', this.accessToken);
 
-        
+
 
           //3rd Get
           const headers = new HttpHeaders({
@@ -64,14 +65,13 @@ export class AdminComponent implements OnInit {
               { headers }
             )
             .subscribe((data: any) => {
-              console.log(JSON.stringify(data));
               this.json = data;
-              
+
               const photoPic = data; // we cannot parse a already parsed data
-             
+
               this.firstName = data.firstName.localized.en_US;
               this.lastName = data.lastName.localized.en_US;
-           
+
 
               this.photoUrl =
                 data['profilePicture'][
@@ -79,8 +79,17 @@ export class AdminComponent implements OnInit {
                 ].elements[0].identifiers[0].identifier;
               //this.photoUrl =data.profilePicture.displayImage~.elements[0].identifiers[0].identifier
 
-              console.log(this.photoUrl);
             });
+
+          this.http
+            .get<any>(
+              'https://api.linkedin.com/v2/emailAddress?q=members&projection=(elements*(handle~))',
+              { headers }
+            )
+            .subscribe((data: any) => {
+              this.email = data.elements[0]['handle~'].emailAddress;
+            });
+
         },
         (err: HttpErrorResponse) => {
           if (err.error instanceof Error) {
