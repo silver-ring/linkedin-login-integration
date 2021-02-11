@@ -28,3 +28,7 @@ We have two main angular components which they contain the main setup
 
 - Login component (/src/app/admin): it contains the part which redirect to the `Authorization Api`
 - Admin component (/src/app/admin): it contains the callback part which will be executed after the callback and container the rest of the flow
+
+## Important note
+
+please not that you might face issue in cros when working in localhost
